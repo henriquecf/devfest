@@ -24,23 +24,25 @@
   </style>
   
   <template>
-    <paper-card>
-      <div class="card-content">
-        <img class="avatar" src="{{issue.user.avatar_url}}"></img>
-        <div class="title">
-          <div class="medium">{{issue.title}}</div>
-          <div class="small">{{issue.user.login}}</div>
+    <template is="dom-if" if="{{issue.id}}">
+      <paper-card>
+        <div class="card-content">
+          <img class="avatar" src="{{issue.user.avatar_url}}"></img>
+          <div class="title">
+            <div class="medium">{{issue.title}}</div>
+            <div class="small">{{issue.user.login}}</div>
+          </div>
+          <marked-element markdown="{{issue.body}}">
+            <div class="markdown-html"></div>
+          </marked-element>
         </div>
-        <marked-element markdown="{{issue.body}}">
-          <div class="markdown-html"></div>
-        </marked-element>
-      </div>
-      <div class="card-actions">
-        <a href="{{issue.html_url}}" target="_blank">
-          <paper-button>View on Github</paper-button>
-        </a>
-      </div>
-    </paper-card>
+        <div class="card-actions">
+          <a href="{{issue.html_url}}" target="_blank">
+            <paper-button>View on Github</paper-button>
+          </a>
+        </div>
+      </paper-card>
+    </template>
   </template>
   
   <script>
