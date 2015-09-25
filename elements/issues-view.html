@@ -20,6 +20,13 @@
   .issue-detail > * {
     margin-bottom: 24px;
   }
+  #repo-info {
+    width: 70%;
+    padding-right: 24px;
+  }
+  #pagination {
+    width: 30%;
+  }
   </style>
   <template>
     <iron-ajax
@@ -31,13 +38,13 @@
     <section class="layout horizontal">
       <issues-list selected-issue="{{selectedIssue}}" issues="[[issues]]"></issues-list>
       <section class="issue-detail layout vertical">
-        <paper-card>
+        <paper-card heading="Github Repository Options">
           <div class="card-content layout horizontal">
-            <div>
+            <div id="repo-info">
               <paper-input label="Owner" value="{{owner::change}}"></paper-input>
               <paper-input label="Repo" value={{repo::change}}></paper-input>
             </div>
-            <div>
+            <div id="pagination">
               <paper-input label="Values per page" value={{perPage::change}}></paper-input>
               <paper-input label="Page" value={{page::change}}></paper-input>
             </div>
