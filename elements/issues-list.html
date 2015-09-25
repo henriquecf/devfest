@@ -3,14 +3,14 @@
 
 <dom-module is="issues-list">
   <style>
-  paper-item:focus {
-    background-color: rgba(0,0,0,0.12);
-  }
+    paper-item:focus {
+      background-color: rgba(0,0,0,0.12);
+    }
   </style>
   
   <template>
     <template is="dom-repeat" id="issuesList" items="{{issues}}">
-      <paper-item on-tap="_handleClick">
+      <paper-item on-tap="_handleTap">
         <paper-item-body two-line>
           <div>{{item.title}}</div>
           <div secondary>{{item.number}}</div>
@@ -18,7 +18,6 @@
         <iron-icon icon="warning"></iron-icon>
       </paper-item>
     </template>
-    <array-selector id="selector" items="{{issues}}" selected="{{selectedIssue}}"></array-selector>
   </template>
   
   <script>
@@ -35,9 +34,8 @@
           notify: true
         }
       },
-      _handleClick: function(event) {
-        var item = this.$.issuesList.itemForElement(event.target);
-        this.$.selector.select(item);
+      _handleTap: function(event) {
+        this.selectedIssue = this.$.issuesList.itemForElement(event.target);
       },
     })
   </script>

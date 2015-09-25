@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/marked-element/marked-element.html">
 
 <dom-module is="issue-detail">
@@ -6,14 +7,38 @@
     paper-card {
       width: 100%;
     }
+    .avatar {
+      display: inline-block;
+      height: 64px;
+      width: 64px;
+      border-radius: 50%;
+    }
+    .title {
+      position: absolute;
+      top: 30px;
+      left: 100px;
+    }
+    .medium {
+      font-size: 24px;
+    }
   </style>
   
   <template>
-    <paper-card heading="{{issue.title}}">
+    <paper-card>
       <div class="card-content">
+        <img class="avatar" src="{{issue.user.avatar_url}}"></img>
+        <div class="title">
+          <div class="medium">{{issue.title}}</div>
+          <div class="small">{{issue.user.login}}</div>
+        </div>
         <marked-element markdown="{{issue.body}}">
           <div class="markdown-html"></div>
         </marked-element>
+      </div>
+      <div class="card-actions">
+        <a href="{{issue.html_url}}" target="_blank">
+          <paper-button>View on Github</paper-button>
+        </a>
       </div>
     </paper-card>
   </template>
