@@ -1,0 +1,25 @@
+{
+  "name": "issue_tracker",
+  "version": "0.0.0",
+  "authors": [
+    "Ivan Morais <ivan.eng.controle@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-ajax": "PolymerElements/iron-ajax#~1.0.4",
+    "paper-card": "Polymer/paper-card",
+    "paper-input": "PolymerElements/paper-input#~1.0.14",
+    "paper-item": "PolymerElements/paper-item#~1.0.3",
+    "polymer": "Polymer/polymer#1.1.0"
+  },
+  "resolutions": {
+    "polymer": "1.1.0"
+  }
+}

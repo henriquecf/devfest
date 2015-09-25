@@ -1,0 +1,17 @@
+<dom-module is="issue-detail">
+  <template>
+    <div>{{issue.title}}</div>
+  </template>
+  
+  <script>
+    Polymer({
+      is: "issue-detail",
+      properties: {
+        issue: {
+          type: Object,
+          value: {}
+        }
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/paper-item/paper-item.html"/>
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html"/>
+
+<dom-module is="issues-list">
+  <style>
+  </style>
+  
+  <template>
+    <template is="dom-repeat" id="issuesList" items="{{issues}}">
+      <paper-item on-tap="_handleClick">
+        <paper-item-body two-line>
+          <div>{{item.title}}</div>
+          <div secondary>{{item.number}}</div>
+        </paper-item-body>
+        <iron-icon icon="warning"></iron-icon>
+      </paper-item>
+    </template>
+    <array-selector id="selector" items="{{issues}}" selected="{{selectedIssue}}"></array-selector>
+  </template>
+  
+  <script>
+    Polymer({
+      is: "issues-list",
+      properties: {
+        issues: {
+          type: Array,
+          value: [],
+        },
+        selectedIssue: {
+          type: Object,
+          reflectToAttribute: true,
+          notify: true
+        }
+      },
+      _handleClick: function(event) {
+        var item = this.$.issuesList.itemForElement(event.target);
+        this.$.selector.select(item);
+      },
+    })
+  </script>
+</dom-module>

@@ -1,0 +1,55 @@
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
+<link rel="import" href="../elements/issues-list.html">
+<link rel="import" href="../elements/issue-detail.html">
+
+<dom-module is="issues-view">
+  <template>
+    <iron-ajax
+      id="ironAjax"
+      auto
+      url="{{url}}"
+      last-response="{{issues}}"></iron-ajax>
+    <paper-card>
+      <paper-input label="Owner" value="{{owner::change}}"></paper-input>
+      <paper-input label="Repo" value={{repo::change}}></paper-input>
+      <paper->
+      <issue-detail issue="[[selectedIssue]]"></issue-detail>
+      <issues-list selected-issue="{{selectedIssue}}" issues="[[issues]]"></issues-list>
+    </paper-card>
+  </template>
+  
+  <script>
+    Polymer({
+      is: "issues-view",
+      properties: {
+        issues: {
+          type: Array,
+          value: [],
+        },
+        selectedIssue: {
+          type: Object,
+          reflectToAttribute: true,
+          notify: true
+        },
+        owner: {
+          type: String,
+          notify: true,
+          value: "polymer"
+        },
+        repo: {
+          type: String,
+          notify: true,
+          value: "polymer"
+        },
+        url: {
+          computed: "_computeUrl(owner, repo)",
+        },
+      },
+      _computeUrl: function(owner, repo) {
+        return ["https://api.github.com/repos", owner, repo, "issues"].join("/");
+      }
+    });
+  </script>
+</dom-module>  
