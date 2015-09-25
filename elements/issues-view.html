@@ -10,10 +10,13 @@
       id="ironAjax"
       auto
       url="{{url}}"
+      params="{{requestParams}}"
       last-response="{{issues}}"></iron-ajax>
     <paper-card>
       <paper-input label="Owner" value="{{owner::change}}"></paper-input>
       <paper-input label="Repo" value={{repo::change}}></paper-input>
+      <paper-input label="Values per page" value={{perPage::change}}></paper-input>
+      <paper-input label="Page" value={{page::change}}></paper-input>
       <paper->
       <issue-detail issue="[[selectedIssue]]"></issue-detail>
       <issues-list selected-issue="{{selectedIssue}}" issues="[[issues]]"></issues-list>
@@ -46,9 +49,23 @@
         url: {
           computed: "_computeUrl(owner, repo)",
         },
+        perPage: {
+          type: Number,
+          value: 10
+        },
+        page: {
+          type: Number,
+          value: 1
+        },
+        requestParams: {
+          computed: '_computeRequestParams(perPage, page)'
+        }
       },
       _computeUrl: function(owner, repo) {
         return ["https://api.github.com/repos", owner, repo, "issues"].join("/");
+      },
+      _computeRequestParams: function(perPage, page) {
+        return {per_page: perPage, page: page};
       }
     });
   </script>
