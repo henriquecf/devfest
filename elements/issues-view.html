@@ -1,10 +1,26 @@
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html"/>
+
 
 <link rel="import" href="../elements/issues-list.html">
 <link rel="import" href="../elements/issue-detail.html">
 
 <dom-module is="issues-view">
+  <style>
+  issues-list {
+    width: 30%;
+  }
+  .issue-detail {
+    width: 70%;
+    padding: 24px;
+  }
+  
+  .issue-detail > * {
+    margin-bottom: 24px;
+  }
+  </style>
   <template>
     <iron-ajax
       id="ironAjax"
@@ -12,15 +28,25 @@
       url="{{url}}"
       params="{{requestParams}}"
       last-response="{{issues}}"></iron-ajax>
-    <paper-card>
-      <paper-input label="Owner" value="{{owner::change}}"></paper-input>
-      <paper-input label="Repo" value={{repo::change}}></paper-input>
-      <paper-input label="Values per page" value={{perPage::change}}></paper-input>
-      <paper-input label="Page" value={{page::change}}></paper-input>
-      <paper->
-      <issue-detail issue="[[selectedIssue]]"></issue-detail>
+    <section class="layout horizontal">
       <issues-list selected-issue="{{selectedIssue}}" issues="[[issues]]"></issues-list>
-    </paper-card>
+      <section class="issue-detail layout vertical">
+        <paper-card>
+          <div class="card-content layout horizontal">
+            <div>
+              <paper-input label="Owner" value="{{owner::change}}"></paper-input>
+              <paper-input label="Repo" value={{repo::change}}></paper-input>
+            </div>
+            <div>
+              <paper-input label="Values per page" value={{perPage::change}}></paper-input>
+              <paper-input label="Page" value={{page::change}}></paper-input>
+            </div>
+          </div>
+        </paper-card>
+        
+        <issue-detail issue="[[selectedIssue]]"></issue-detail>
+      </section>
+    </section>
   </template>
   
   <script>

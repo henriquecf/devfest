@@ -1,6 +1,21 @@
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
+
 <dom-module is="issue-detail">
+  <style>
+    paper-card {
+      width: 100%;
+    }
+  </style>
+  
   <template>
-    <div>{{issue.title}}</div>
+    <paper-card heading="{{issue.title}}">
+      <div class="card-content">
+        <marked-element markdown="{{issue.body}}">
+          <div class="markdown-html"></div>
+        </marked-element>
+      </div>
+    </paper-card>
   </template>
   
   <script>
