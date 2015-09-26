@@ -24,7 +24,7 @@
   </style>
   
   <template>
-    <template is="dom-if" if="{{issue.id}}">
+    <template is="dom-if" if="{{issue}}">
       <paper-card>
         <div class="card-content">
           <img class="avatar" src="{{issue.user.avatar_url}}"></img>
@@ -51,7 +51,6 @@
       properties: {
         issue: {
           type: Object,
-          value: {}
         }
       }
     });
